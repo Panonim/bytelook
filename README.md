@@ -14,7 +14,7 @@ The program works only for a Linux based system and other systems are **NOT supp
 
 ## What do you need?
 
-You will need: curl and gcc installed to run the install.sh command and use bytelook
+You will need: [curl](https://curl.se/download.html) and [gcc](https://gcc.gnu.org/install/) installed to run the install.sh command and use bytelook
 ## Installation
 
 You can install bytelook using [install.sh](https://raw.githubusercontent.com/Panonim/bytelook/main/downloads/install.sh) folder under the downloads section.
