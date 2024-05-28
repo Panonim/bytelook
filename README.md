@@ -10,7 +10,7 @@ Bytelook is a simple tool wich allows you to see how much storage you have left 
 
 The program works only for a Linux based system and other systems are **NOT supported**
 
-<img src="https://raw.githubusercontent.com/Panonim/bytelook/main/ByteLook.svg" alt="logo" width="20%" height="25%">
+<img src="https://raw.githubusercontent.com/Panonim/bytelook/main/ByteLook.svg" alt="logo" width="200px" height="250px">
 
 ## What do you need?
 
