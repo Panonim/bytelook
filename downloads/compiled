@@ -1,0 +1,21 @@
+@@@@UU   XX-==-==888 XXXDDStd888 Ptd(#(#(#<<QtdRtd-==00/lib64/ld-linux-x86-64.so.2GNUGNU$9q(.}&GNUem$D  =5 e) .V"fgetssnprintfputsperrorstatvfsfreeexitstrdupstrcspnpclose__libc_start_main__cxa_finalizepopenlibc.so.6GLIBC_2.34GLIBC_2.2.5_ITM_deregisterTMCloneTable__gmon_start___ITM_registerTMCloneTablekuui      hh@???
+P@X@H/Ht5/%/@%/h%/h%/h%/h%/h%/h%/h%/hp%/`%/h        P%z/h
+@%r/h0%.f1I^HHPTE11H=y.f.@H=9/H2/H9tH~.Ht     H=  /H5/H)HH?HHHtHM.HfD=.u+UH=*.HtH=.)d.]wUHHPH}HEHxfH*HHH             HǸ}HUHEH)HEHHH(HHHǸDHUHEHHt9E}(HHHHHHǸEE;tHHHHHHǸUHSHHEHHHHHEH}unHHfHHHHƄHt&]CEHHHHcHŰHUH
+H?HuHEHH
+HHUHǸH
+HHHǸHx
+HHHǸHZ
+HHsHǸvH7
+HH2
+HHHǸNUHHEEHHŰHEE;E|߸H]%.2f GB%.2f MB%s┌───────────────────────────────────┐%s
+statvfs%s│ Path: %-29s │%s
+%s│ Total: %s│ Used:  %s│ Available: %s│                                   │%s
+%s└───────────────────────────────────┘%s
+
+rlsblk -nr -o MOUNTPOINTFailed to run command
+%s┌───────────────────────────────────┐
+%s│                                   │
+%s│             ByteLook              │
+%s└───────────────────────────────────┘%s
+L=oxRx"zRxFJ?;*3$"D\AC
+? `    opooJo=6FVfvh@GCC: (Debian 12.2.0-14) 12.2.0 | 0 `3Ip@U=|=T$=(#?   `@<MXp@_Lzex`@ h@ x@"p@':K\p@h "Scrt1.o__abi_tagcrtstuff.cderegister_tm_clones__do_global_dtors_auxcompleted.0__do_global_dtors_aux_fini_array_entryframe_dummy__frame_dummy_init_array_entrybytelook.c__FRAME_END___DYNAMIC__GNU_EH_FRAME_HDR_GLOBAL_OFFSET_TABLE_free@GLIBC_2.2.5__libc_start_main@GLIBC_2.34_ITM_deregisterTMCloneTableputs@GLIBC_2.2.5print_size_edata_finipclose@GLIBC_2.2.5snprintf@GLIBC_2.2.5strcspn@GLIBC_2.2.5fgets@GLIBC_2.2.5__data_start__gmon_start____dso_handle_IO_stdin_used_endstatvfs@GLIBC_2.2.5__bss_startmainpopen@GLIBC_2.2.5perror@GLIBC_2.2.5print_disk_usageexit@GLIBC_2.2.5__TMC_END___ITM_registerTMCloneTablestrdup@GLIBC_2.2.5__cxa_finalize@GLIBC_2.2.5_init.symtab.strtab.shstrtab.interp.note.gnu.property.note.gnu.build-id.note.ABI-tag.gnu.hash.dynsym.dynstr.gnu.version.gnu.version_r.rela.dyn.rela.plt.init.plt.got.text.fini.rodata.eh_frame_hdr.eh_frame.init_array.fini_array.dynamic.got.plt.data.bss.comment#886XX$I|| Wo$aixxqoJJ$~opp0B``  KLL         ((#(#<h#h=-??`@`0p@p0p00   (57
