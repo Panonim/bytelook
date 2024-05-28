@@ -15,6 +15,8 @@ The program works only for a Linux based system and other systems are **NOT supp
 ## What do you need?
 
 You will need: [curl](https://curl.se/download.html) and [gcc](https://gcc.gnu.org/install/) installed to run the installation script (install.sh) to get bytelook.
+### Are you on Ubuntu based system?
+Well, then good for you! We made a [special tutorial](https://github.com/Panonim/bytelook/blob/main/downloads/howto.md) of how to install a package on systems like Debian, Popos, Lubuntu or Ubuntu.
 ## Installation
 
 You can install bytelook using [install.sh](https://raw.githubusercontent.com/Panonim/bytelook/main/downloads/install.sh) folder under the downloads section.
