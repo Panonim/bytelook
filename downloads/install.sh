@@ -35,7 +35,7 @@ if ! path_contains "/usr/local/bin"; then
 fi
 
 # Download the compiled binary file
-curl -o compiled https://raw.githubusercontent.com/Panonim/bytelook/main/downloads/compiled?token=GHSAT0AAAAAACONWKHLJTW4P47VALIH564KZSWAUZA
+curl -o compiled https://raw.githubusercontent.com/Panonim/bytelook/main/bytelook.c
 
 # Make the binary executable
 chmod +x compiled
