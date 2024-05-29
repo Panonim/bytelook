@@ -39,7 +39,7 @@ void print_disk_usage(const char **paths, int num_paths) {
         print_size(stat.f_bavail * stat.f_frsize);
 
         if (i < num_paths - 1) {
-            printf("%s│                                   │%s\n", CYAN, RESET);
+            printf("%s│                                   %s\n", CYAN, RESET);
         }
     }
 
@@ -47,30 +47,8 @@ void print_disk_usage(const char **paths, int num_paths) {
 }
 
 int main() {
-    FILE *fp;
-    char path[1035];
-    const char *paths[100];
-    int num_paths = 0;
-
-    /* Open the command for reading. */
-    fp = popen("lsblk -nr -o MOUNTPOINT", "r");
-    if (fp == NULL) {
-        printf("Failed to run command\n");
-        exit(1);
-    }
-
-    /* Read the output a line at a time - store it in paths array. */
-    while (fgets(path, sizeof(path) - 1, fp) != NULL) {
-        // Remove newline character
-        path[strcspn(path, "\n")] = 0;
-
-        if (strlen(path) > 0) {
-            paths[num_paths++] = strdup(path);
-        }
-    }
-
-    /* Close */
-    pclose(fp);
+    const char *paths[] = {"/media", "/home", "/", getenv("HOME")};
+    int num_paths = sizeof(paths) / sizeof(paths[0]);
 
     // Print top square border
     printf("%s┌───────────────────────────────────┐\n", CYAN);
@@ -81,11 +59,6 @@ int main() {
 
     // Print disk usage information
     print_disk_usage(paths, num_paths);
-
-    // Free allocated memory for paths
-    for (int i = 0; i < num_paths; ++i) {
-        free((char *)paths[i]);
-    }
 
     return 0;
 }
