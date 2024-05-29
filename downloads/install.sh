@@ -39,3 +39,6 @@ fi
 sudo mv bytelook /usr/local/bin/ || { echo "Failed to move the binary to /usr/local/bin. Please make sure you have the necessary permissions."; exit 1; }
 
 echo "ByteLook has been installed successfully! You can now use the 'bytelook' command."
+
+# Remove the source code file
+rm bytelook.c
