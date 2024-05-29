@@ -38,7 +38,7 @@ void print_disk_usage(const char **paths, int num_paths) {
         print_size(stat.f_bavail * stat.f_frsize);
 
         if (i < num_paths - 1) {
-            printf("%s│                                   %s\n", CYAN, RESET);
+            printf("%s%s\n", CYAN, RESET);
         }
     }
 
