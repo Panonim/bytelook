@@ -3,11 +3,11 @@
 #include <sys/statvfs.h>
 #include <string.h>
 #include <unistd.h>
-#include <sys/ioctl.h>
 
 #define CYAN "\033[1;36m"
 #define RESET "\033[0m"
 
+// Function to print size in a human-readable format
 void print_size(unsigned long size_in_bytes) {
     double size_in_mb = size_in_bytes / (1024.0 * 1024.0);
     char buffer[50];
@@ -19,17 +19,25 @@ void print_size(unsigned long size_in_bytes) {
     printf("%s\n", buffer);
 }
 
-void print_disk_usage(const char **paths, int num_paths) {
+// Function to print disk usage information for given paths
+void print_disk_usage(const char **paths, int num_paths, int no_home) {
     printf("%s┌───────────────────────────────────┐%s\n", CYAN, RESET);
 
     for (int i = 0; i < num_paths; ++i) {
         struct statvfs stat;
 
+        // Check if statvfs succeeds
         if (statvfs(paths[i], &stat) != 0) {
-            perror("statvfs");
+            // Print error message if statvfs fails
+            printf("%s│ Path: %-29s │%s\n", CYAN, paths[i], RESET);
+            printf("%s│ Error: Unable to access path      │%s\n", CYAN, RESET);
+            if (i < num_paths - 1) {
+                printf("%s│                                   %s\n", CYAN, RESET);
+            }
             continue;
         }
 
+        // Print disk usage details
         printf("%s│ Path: %-29s │%s\n", CYAN, paths[i], RESET);
         printf("%s│ Total: ", CYAN);
         print_size(stat.f_blocks * stat.f_frsize);
@@ -43,14 +51,30 @@ void print_disk_usage(const char **paths, int num_paths) {
         }
     }
 
+    // Print message if the user does not have a home directory
+    if (no_home) {
+        printf("%s│                                   │%s\n", CYAN, RESET);
+        printf("%s│ User doesn't have a home directory │%s\n", CYAN, RESET);
+    }
+
     printf("%s└───────────────────────────────────┘%s\n\n", CYAN, RESET);
 }
 
 int main() {
-    const char *paths[] = {"/media", "/home", "/", getenv("HOME")};
-    int num_paths = sizeof(paths) / sizeof(paths[0]);
+    const char *paths[4] = {"/media", "/home", "/"};
+    int num_paths = 3;
 
-    // Print top square border
+    // Check if the home directory exists
+    const char *home_dir = getenv("HOME");
+    int no_home = 0;
+
+    // Add home directory to paths if it exists
+    if (home_dir) {
+        paths[num_paths++] = home_dir;
+    } else {
+        no_home = 1;
+    }
+    
     printf("%s┌───────────────────────────────────┐\n", CYAN);
     printf("%s│                                   │\n", CYAN);
     printf("%s│             ByteLook              │\n", CYAN);
@@ -58,7 +82,7 @@ int main() {
     printf("%s└───────────────────────────────────┘%s\n", CYAN, RESET);
 
     // Print disk usage information
-    print_disk_usage(paths, num_paths);
+    print_disk_usage(paths, num_paths, no_home);
 
     return 0;
 }
