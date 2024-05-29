@@ -30,7 +30,7 @@ void print_disk_usage(const char **paths, int num_paths) {
             continue;
         }
 
-        printf("%s│ Path: %-29s │%s\n", CYAN, paths[i], RESET);
+        printf("%s│ Path: %-29s %s\n", CYAN, paths[i], RESET);
         printf("%s│ Total: ", CYAN);
         print_size(stat.f_blocks * stat.f_frsize);
         printf("%s│ Used:  ", CYAN);
