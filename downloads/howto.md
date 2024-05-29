@@ -1,7 +1,7 @@
 # How to install packages on Debian/Ubuntu
 The process for this distributions is really easy you can do it in just one line of code!
 ```
-sudo apt install update && sudo apt upgrade && sudo apt install gcc && sudo apt install curl
+sudo apt update && sudo apt upgrade && sudo apt install gcc && sudo apt install curl
 ```
 ## Not sure how it works?
 1. The first command allows you to update your packages systm wich is really importnant, because you can avoid system occuraption.
