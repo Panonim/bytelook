@@ -1,64 +1,44 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/statvfs.h>
-#include <string.h>
-#include <unistd.h>
+#!/bin/bash
 
-#define CYAN "\033[1;36m"
-#define RESET "\033[0m"
-
-void print_size(unsigned long size_in_bytes) {
-    double size_in_mb = size_in_bytes / (1024.0 * 1024.0);
-    char buffer[50];
-    if (size_in_mb > 1024) {
-        snprintf(buffer, sizeof(buffer), "%.2f GB", size_in_mb / 1024.0);
-    } else {
-        snprintf(buffer, sizeof(buffer), "%.2f MB", size_in_mb);
-    }
-    printf("%s%s%s\n", CYAN, buffer, RESET);
+# Function to check if a command is available
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
 }
 
-void print_disk_usage(const char **paths, int num_paths) {
-    printf("%s┌───────────────────────────────────┐%s\n", CYAN, RESET);
+# Check if GCC is installed
+if ! command_exists gcc; then
+    echo "GCC is not installed. Please install GCC to proceed."
+    exit 1
+fi
 
-    for (int i = 0; i < num_paths; ++i) {
-        struct statvfs stat;
+# Check if curl is installed
+if ! command_exists curl; then
+    echo "curl is not installed. Please install curl to proceed."
+    exit 1
+fi
 
-        if (statvfs(paths[i], &stat) != 0) {
-            perror("statvfs");
-            continue;
-        }
+# Download the C source code file
+curl -o bytelook.c https://raw.githubusercontent.com/Panonim/bytelook/main/bytelook.c
 
-        printf("%s│ Path: %-29s %s\n", CYAN, paths[i], RESET);
-        printf("%s│ Total: ", CYAN);
-        print_size(stat.f_blocks * stat.f_frsize);
-        printf("%s│ Used:  ", CYAN);
-        print_size((stat.f_blocks - stat.f_bfree) * stat.f_frsize);
-        printf("%s│ Available: ", CYAN);
-        print_size(stat.f_bavail * stat.f_frsize);
+# Check if the download was successful
+if [ $? -ne 0 ]; then
+    echo "Failed to download the source code file. Please check your internet connection or try again later."
+    exit 1
+fi
 
-        if (i < num_paths - 1) {
-            printf("%s│                                   %s\n", CYAN, RESET);
-        }
-    }
+# Compile the C program
+gcc bytelook.c -o bytelook
 
-    printf("%s└───────────────────────────────────┘%s\n", CYAN, RESET);
-}
+# Check if compilation was successful
+if [ $? -ne 0 ]; then
+    echo "Failed to compile the source code file. Please check for any compilation errors and try again."
+    exit 1
+fi
 
-int main() {
-    const char *home = getenv("HOME");
-    const char *paths[] = {"/home", "/media", home};
-    int num_paths = sizeof(paths) / sizeof(paths[0]);
+# Move the compiled binary to /usr/local/bin
+sudo mv bytelook /usr/local/bin/ || { echo "Failed to move the binary to /usr/local/bin. Please make sure you have the necessary permissions."; exit 1; }
 
-    // Print top square border
-    printf("%s┌───────────────────────────────────┐\n", CYAN);
-    printf("%s│                                   │\n", CYAN);
-    printf("%s│             ByteLook              │\n", CYAN);
-    printf("%s│                                   │\n", CYAN);
-    printf("%s└───────────────────────────────────┘%s\n", CYAN, RESET);
+echo "ByteLook has been installed successfully! You can now use the 'bytelook' command."
 
-    // Print disk usage information
-    print_disk_usage(paths, num_paths);
-
-    return 0;
-}
+# Remove the source code file
+rm bytelook.c
