@@ -42,3 +42,6 @@ echo "ByteLook has been installed successfully! You can now use the 'bytelook' c
 
 # Remove the source code file
 rm bytelook.c
+
+# Remove the script itself
+rm -- "$0"
