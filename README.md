@@ -30,7 +30,7 @@ After the sucessful installation you will get message: "ByteLook has been instal
 
 ## Preview
 
-![Demo image](https://github.com/Panonim/bytelook/blob/main/bytefinal.png)
+![Demo image](https://github.com/Panonim/bytelook/blob/main/byte.png)
 
 
 
