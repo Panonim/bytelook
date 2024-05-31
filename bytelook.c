@@ -52,8 +52,8 @@ void print_disk_usage(const char **paths, int num_paths, int no_home) {
 
     // Print message if the user does not have a home directory
     if (no_home) {
-        printf("%s│                                   │%s\n", CYAN, RESET);
-        printf("%s│ User doesn't have a home directory │%s\n", CYAN, RESET);
+        printf("%s│                                   %s\n", CYAN, RESET);
+        printf("%s│ User doesn't have a home directory %s\n", CYAN, RESET);
     }
 
     printf("%s└───────────────────────────────────┘%s\n\n", CYAN, RESET);
