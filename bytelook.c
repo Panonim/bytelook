@@ -59,7 +59,7 @@ void print_disk_usage(const char **paths, int num_paths, int no_home) {
     printf("%s└───────────────────────────────────┘%s\n\n", CYAN, RESET);
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     const char *paths[4] = {"/media", "/home", "/"};
     int num_paths = 3;
 
@@ -72,6 +72,20 @@ int main() {
         paths[num_paths++] = home_dir;
     } else {
         no_home = 1;
+    }
+
+    // Parse command-line arguments
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "--help") == 0) {
+            printf("Usage: %s [OPTIONS]\n", argv[0]);
+            printf("Options:\n");
+            printf("  --help     Display this help message\n");
+            printf("  -v         Display version information\n");
+            return 0;
+        } else if (strcmp(argv[i], "-v") == 0) {
+            printf("ByteLook version 1.0\n");
+            return 0;
+        }
     }
     
     printf("%s┌───────────────────────────────────┐\n", CYAN);
