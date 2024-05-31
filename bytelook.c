@@ -40,6 +40,7 @@ void print_disk_usage(const char **paths, int num_paths) {
         if (i < num_paths - 1) {
             printf("%s│                                   %s\n", CYAN, RESET);
         }
+        continue;
     }
 
     printf("%s└───────────────────────────────────┘%s\n\n", CYAN, RESET);
