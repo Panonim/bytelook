@@ -27,9 +27,9 @@ void print_disk_usage(const char **paths, int num_paths) {
 
         if (statvfs(paths[i], &stat) != 0) {
             perror("statvfs");
-        }
+            }
             continue;
-        } 
+        }
         // Print disk usage display
         printf("%s│ Path: %-29s %s\n", CYAN, paths[i], RESET);
         printf("%s│ Total: ", CYAN);
