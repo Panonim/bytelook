@@ -59,7 +59,22 @@ void print_disk_usage(const char **paths, int num_paths, int no_home) {
     printf("%s└───────────────────────────────────┘%s\n\n", CYAN, RESET);
 }
 
+// Function to update the current executable
+void update_current_file() {
+    printf("Performing update...\n");
+    system("curl -s -o temp_update_file.c https://raw.githubusercontent.com/Panonim/bytelook/Small-Update-1.2.0/bytelook.c");
+    system("gcc -o temp_executable temp_update_file.c");
+    system("mv temp_executable bytelook");
+    system("rm temp_update_file.c");
+    printf("Update complete. Please restart ByteLook.\n");
+}
+
 int main(int argc, char *argv[]) {
+    if (argc > 1 && strcmp(argv[1], "update") == 0) {
+        update_current_file();
+        return 0;
+    }
+
     const char *paths[4] = {"/media", "/home", "/"};
     int num_paths = 3;
 
@@ -81,6 +96,7 @@ int main(int argc, char *argv[]) {
             printf("Options:\n");
             printf("  --help     Display this help message\n");
             printf("  -v         Display version information\n");
+            printf("  update     Updates a program to the newest version\n");
             return 0;
         } else if (strcmp(argv[i], "-v") == 0) {
             printf("ByteLook version 1.2.0\n");
