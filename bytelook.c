@@ -83,7 +83,7 @@ int main(int argc, char *argv[]) {
             printf("  -v         Display version information\n");
             return 0;
         } else if (strcmp(argv[i], "-v") == 0) {
-            printf("ByteLook version 1.0\n");
+            printf("ByteLook version 1.2.0\n");
             return 0;
         }
     }
