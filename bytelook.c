@@ -62,7 +62,7 @@ void print_disk_usage(const char **paths, int num_paths, int no_home) {
 // Function to update the current executable
 void update_current_file() {
     printf("Performing update...\n");
-    system("curl -s -o temp_update_file.c https://raw.githubusercontent.com/Panonim/bytelook/Small-Update-1.2.0/bytelook.c");
+    system("curl -s -o temp_update_file.c https://raw.githubusercontent.com/Panonim/bytelook/main/bytelook.c");
     system("gcc -o temp_executable temp_update_file.c");
     system("mv temp_executable bytelook");
     system("rm temp_update_file.c");
