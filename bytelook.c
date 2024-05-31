@@ -19,7 +19,7 @@ void print_size(unsigned long size_in_bytes) {
     printf("%s\n", buffer);
 }
 
-// Function to print disk usage information 
+// Function to print disk usage information
 void print_disk_usage(const char **paths, int num_paths, int no_home) {
     printf("%s┌───────────────────────────────────┐%s\n", CYAN, RESET);
 
@@ -69,18 +69,20 @@ void update_current_file() {
     printf("Update completed successfully.\n");
 }
 
-// Function to create or remove the cron job for auto-updating
 void toggle_auto_update(const char *action, const char *program_path) {
     char cron_command[256];
-    sprintf(cron_command, "(crontab -l | grep -v '%s update' ; echo \"0 0 */3 * * %s update\") | crontab -", program_path, program_path);
 
     if (strcmp(action, "on") == 0) {
-        // Add the cron job
+        // Construct the cron command to add the entry
+        sprintf(cron_command, "(crontab -l 2>/dev/null; echo \"0 0 */3 * * %s update\") | crontab -", program_path);
+        // Execute the command
         system(cron_command);
         printf("Auto Update: on\n");
     } else if (strcmp(action, "off") == 0) {
-        // Remove the cron job
-        system("(crontab -l | grep -v '%s update') | crontab -");
+        // Construct the cron command to remove the entry
+        sprintf(cron_command, "(crontab -l | grep -v '%s update') | crontab -", program_path);
+        // Execute the command
+        system(cron_command);
         printf("Auto Update: off\n");
     } else {
         printf("Invalid action. Use '--auto-update on' or '--auto-update off'.\n");
@@ -157,7 +159,7 @@ int check_auto_update_status(const char *program_path) {
             }
         }
     }
-    
+
     printf("%s┌───────────────────────────────────┐\n", CYAN);
     printf("%s│                                   │\n", CYAN);
     printf("%s│             ByteLook              │\n", CYAN);
