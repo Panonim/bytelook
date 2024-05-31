@@ -68,10 +68,63 @@ void update_bytelook() {
     system("rm temp_update_file.c");
     printf("Update complete. Please restart ByteLook.\n");
 }
+// Function to add a cron job
+void add_cron_job() {
+    FILE *cron = popen("crontab -l", "r");
+    if (!cron) {
+        perror("Failed to read crontab");
+        return;
+    }
+
+    char cron_jobs[1024] = {0};
+    fread(cron_jobs, 1, sizeof(cron_jobs), cron);
+    pclose(cron);
+
+    if (!strstr(cron_jobs, CRON_JOB)) {
+        FILE *new_cron = popen("crontab -", "w");
+        if (!new_cron) {
+            perror("Failed to write to crontab");
+            return;
+        }
+        fprintf(new_cron, "%s%s", cron_jobs, CRON_JOB);
+        pclose(new_cron);
+        printf("Auto-update cron job added.\n");
+    } else {
+        printf("Auto-update cron job already exists.\n");
+    }
+}
+
+// Function to remove a cron job
+void remove_cron_job() {
+    FILE *cron = popen("crontab -l", "r");
+    if (!cron) {
+        perror("Failed to read crontab");
+        return;
+    }
+
+    char cron_jobs[1024] = {0};
+    fread(cron_jobs, 1, sizeof(cron_jobs), cron);
+    pclose(cron);
+
+    if (strstr(cron_jobs, CRON_JOB)) {
+        char *position = strstr(cron_jobs, CRON_JOB);
+        memmove(position, position + strlen(CRON_JOB), strlen(position + strlen(CRON_JOB)) + 1);
+        FILE *new_cron = popen("crontab -", "w");
+        if (!new_cron) {
+            perror("Failed to write to crontab");
+            return;
+        }
+        fprintf(new_cron, "%s", cron_jobs);
+        pclose(new_cron);
+        printf("Auto-update cron job removed.\n");
+    } else {
+        printf("Auto-update cron job does not exist.\n");
+    }
+}
 
 int main(int argc, char *argv[]) {
     int auto_updates = 0;
-
+    
     // Print help function and set the vars
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "--help") == 0) {
