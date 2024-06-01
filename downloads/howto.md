@@ -12,7 +12,7 @@ sudo apt update && sudo apt upgrade
  ```
 sudo apt install gcc
  ```
-3. Cron is a function that allows you to run a specify command at the time you specify.
+3. Cron is a function that allows you to run a specify command at the time you would like.
   ```
 sudo apt install cron
 ```
