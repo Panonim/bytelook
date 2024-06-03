@@ -64,7 +64,7 @@ void update_current_file() {
     printf("Performing update...\n");
     system("curl -s -o temp_update_file.c https://raw.githubusercontent.com/Panonim/bytelook/main/bytelook.c");
     system("gcc -o temp_executable temp_update_file.c");
-    system("mv temp_executable bytelook");
+    system("mv temp_executable /usr/local/bin/bytelook");
     system("rm temp_update_file.c");
     printf("Update completed successfully.\n");
 }
