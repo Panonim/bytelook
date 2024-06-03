@@ -165,7 +165,6 @@ int check_auto_update_status(const char *program_path) {
     printf("%s│             ByteLook              │\n", CYAN);
     printf("%s│                                   │\n", CYAN);
     printf("%s└───────────────────────────────────┘%s\n", CYAN, RESET);
-    printf("test");
 
     // Print disk usage information
     print_disk_usage(paths, num_paths, no_home);
