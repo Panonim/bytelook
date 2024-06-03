@@ -162,7 +162,7 @@ int check_auto_update_status(const char *program_path) {
 
     printf("%s┌───────────────────────────────────┐\n", CYAN);
     printf("%s│                                   │\n", CYAN);
-    printf("%s│             ByteLooktest          │\n", CYAN);
+    printf("%s│             ByteLook              │\n", CYAN);
     printf("%s│                                   │\n", CYAN);
     printf("%s└───────────────────────────────────┘%s\n", CYAN, RESET);
 
