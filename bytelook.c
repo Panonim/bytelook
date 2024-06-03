@@ -147,7 +147,7 @@ int check_auto_update_status(const char *program_path) {
             printf("  --auto-update on/off   Current status: %s\n", check_auto_update_status(program_path) ? "on" : "off");
             return 0;
         } else if (strcmp(argv[i], "-v") == 0) {
-            printf("ByteLook version 1.2.0\n");
+            printf("ByteLook version 2.0.0\n");
             return 0;
         } else if (strcmp(argv[i], "--auto-update") == 0) {
             if (i + 1 < argc) {
