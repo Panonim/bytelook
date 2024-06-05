@@ -11,7 +11,7 @@ Bytelook is available for commercial distribution under the following conditions
 ## Licensing Terms
 The general license will be under the [license section](https://github.com/panonim/bytelook?tab=License-1-ov-file)
 1. **Attribution**: Any distribution of Bytelook must include a clear acknowledgment of the original authors and the name "Bytelook". This can be done in the product's documentation, about section, or credits.
-2. **Modification**: Companies are allowed to modify Bytelook to suit their needs. However, any modified version must also retain the acknowledgment of the original Bytelook authors.
+2. **Modification**: Companies are allowed to modify Bytelook to suit their needs. However, any modified version must also retain the acknowledgment of the original Bytelook authors. Companies can't change the name of the program.
 3. **Redistribution**: Companies can redistribute Bytelook as part of a larger software package. Redistribution of Bytelook as a standalone product is not permitted.
 
 ## Technical Integration
