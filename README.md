@@ -19,12 +19,10 @@ You will need: [curl](https://curl.se/download.html), cron and [gcc](https://gcc
 Well, then good for you! We made a [special tutorial](https://github.com/Panonim/bytelook/blob/main/downloads/howto.md) of how to install a package on systems like Debian, Popos, Lubuntu or Ubuntu.
 ## Installation
 
-You can install bytelook using [install.sh](https://raw.githubusercontent.com/Panonim/bytelook/main/downloads/install.sh) file under the downloads section.
-
-Copy the  code and then create `install.sh` file using e.g. command `sudo nano install.sh` paste the code inside and run following command.
+You can install bytelook using this command, how does it work? The first step is downloading the file, in the second step we are making this file an executable and finally we are running the script.
 
 ```
-sudo chmod +x install.sh && sudo sh install.sh
+sudo curl -LJO https://github.com/Panonim/bytelook/blob/main/downloads/install.sh && sudo chmod +x install.sh && sudo sh install.sh
 ```
 After the sucessful installation you will get message: "ByteLook has been installed successfully! You can now use the 'bytelook' command."
 
