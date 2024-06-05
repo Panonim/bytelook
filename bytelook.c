@@ -115,7 +115,7 @@ int main(int argc, char *argv[]) {
     if (len != -1) {
         program_path[len] = '\0';
     } else {
-        printf("Error: Unable to determine the path to the executable.\n");
+        printf("Error: Unable to determine the path to bytelook\n");
         return 1;
     }
   // Function to check the current auto-update status
@@ -158,6 +158,10 @@ int check_auto_update_status(const char *program_path) {
                 return 0;
             }
         }
+    }
+        if (argc > 1) {
+        printf("Invalid command. Use '--help' for more information.\n");
+        return 0;
     }
 
     printf("%s┌───────────────────────────────────┐\n", CYAN);
