@@ -3,8 +3,10 @@
 #include <sys/statvfs.h>
 #include <string.h>
 #include <unistd.h>
+#include <errno.h>
 
 #define CYAN "\033[1;36m"
+#define RED "\033[1;31m"
 #define RESET "\033[0m"
 
 // Function to print size in a human format
@@ -61,28 +63,47 @@ void print_disk_usage(const char **paths, int num_paths, int no_home) {
 
 // Function to update bytelook
 void update_current_file() {
+    if (getuid() != 0) {
+        printf("%sError: Permission denied. Please run as root.%s\n", RED, RESET);
+        return;
+    }
+
     printf("Performing update...\n");
-    system("curl -s -o temp_update_file.c https://raw.githubusercontent.com/Panonim/bytelook/main/bytelook.c");
-    system("gcc -o temp_executable temp_update_file.c");
-    system("mv temp_executable /usr/local/bin/bytelook");
-    system("rm temp_update_file.c");
+    if (system("curl -s -o temp_update_file.c https://raw.githubusercontent.com/Panonim/bytelook/main/bytelook.c") != 0 ||
+        system("gcc -o temp_executable temp_update_file.c") != 0 ||
+        system("mv temp_executable /usr/local/bin/bytelook") != 0 ||
+        system("rm temp_update_file.c") != 0) {
+        printf("%sError: Update failed.%s\n", RED, RESET);
+        return;
+    }
     printf("Update completed successfully.\n");
 }
 
 void toggle_auto_update(const char *action, const char *program_path) {
+    if (getuid() != 0) {
+        printf("%sError: Permission denied. Please run as root.%s\n", RED, RESET);
+        return;
+    }
+
     char cron_command[256];
 
     if (strcmp(action, "on") == 0) {
         // Construct the cron command to add the entry
         sprintf(cron_command, "(crontab -l 2>/dev/null; echo \"0 0 */3 * * %s update\") | crontab -", program_path);
         // Execute the command
-        system(cron_command);
+        if (system(cron_command) != 0) {
+            printf("%sError: Failed to enable auto-update.%s\n", RED, RESET);
+            return;
+        }
         printf("Auto Update: on\n");
     } else if (strcmp(action, "off") == 0) {
         // Construct the cron command to remove the entry
         sprintf(cron_command, "(crontab -l | grep -v '%s update') | crontab -", program_path);
         // Execute the command
-        system(cron_command);
+        if (system(cron_command) != 0) {
+            printf("%sError: Failed to disable auto-update.%s\n", RED, RESET);
+            return;
+        }
         printf("Auto Update: off\n");
     } else {
         printf("Invalid action. Use '--auto-update on' or '--auto-update off'.\n");
@@ -118,27 +139,29 @@ int main(int argc, char *argv[]) {
         printf("Error: Unable to determine the path to bytelook\n");
         return 1;
     }
-  // Function to check the current auto-update status
-int check_auto_update_status(const char *program_path) {
-    FILE *cron_file = popen("crontab -l", "r");
-    if (cron_file == NULL) {
+
+    // Function to check the current auto-update status
+    int check_auto_update_status(const char *program_path) {
+        FILE *cron_file = popen("crontab -l", "r");
+        if (cron_file == NULL) {
+            return 0; // Auto-update is off
+        }
+
+        char line[256];
+        while (fgets(line, sizeof(line), cron_file) != NULL) {
+            if (strstr(line, program_path) != NULL && strstr(line, "update") != NULL) {
+                pclose(cron_file);
+                return 1; // Auto-update is on
+            }
+        }
+
+        pclose(cron_file);
         return 0; // Auto-update is off
     }
 
-    char line[256];
-    while (fgets(line, sizeof(line), cron_file) != NULL) {
-        if (strstr(line, program_path) != NULL && strstr(line, "update") != NULL) {
-            pclose(cron_file);
-            return 1; // Auto-update is on
-        }
-    }
-
-    pclose(cron_file);
-    return 0; // Auto-update is off
-}
     // Parse command-line arguments
     for (int i = 1; i < argc; i++) {
-       if (strcmp(argv[i], "--help") == 0) {
+        if (strcmp(argv[i], "--help") == 0) {
             printf("Usage: %s [OPTIONS]\n", argv[0]);
             printf("Options:\n");
             printf("  --help     Display this help message\n");
@@ -147,7 +170,7 @@ int check_auto_update_status(const char *program_path) {
             printf("  --auto-update on/off   Current status: %s\n", check_auto_update_status(program_path) ? "on" : "off");
             return 0;
         } else if (strcmp(argv[i], "-v") == 0) {
-            printf("ByteLook version 2.0.1\n");
+            printf("ByteLook version 2.0.2\n");
             return 0;
         } else if (strcmp(argv[i], "--auto-update") == 0) {
             if (i + 1 < argc) {
@@ -159,7 +182,8 @@ int check_auto_update_status(const char *program_path) {
             }
         }
     }
-        if (argc > 1) {
+
+    if (argc > 1) {
         printf("Invalid command. Use '--help' for more information.\n");
         return 0;
     }
