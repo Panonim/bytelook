@@ -16,7 +16,7 @@ sudo apt install gcc
   ```
 sudo apt install cron
 ```
-5. Curl is the last package we need, it allows you to get things from the internet like text or programs, you can run the following command to install it.
+4. Curl is the last package we need, it allows you to get things from the internet like text or programs, you can run the following command to install it.
   ```
 sudo apt install curl
   ```
