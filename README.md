@@ -22,7 +22,7 @@ Well, then good for you! We made a [special tutorial](https://github.com/Panonim
 You can install bytelook using this command, how does it work? The first step is downloading the file, in the second step we are making this file an executable and finally we are running the script.
 
 ```
-sudo curl -LOs https://raw.githubusercontent.com/Panonim/bytelook/main/downloads/install.sh && sudo chmod +x install.sh && sudo sh install.sh
+sudo curl -Os https://raw.githubusercontent.com/Panonim/bytelook/main/downloads/install.sh && sudo chmod +x install.sh && sudo sh install.sh
 ```
 After the sucessful installation you will get message: "ByteLook has been installed successfully! You can now use the 'bytelook' command."
 
