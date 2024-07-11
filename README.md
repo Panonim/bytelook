@@ -25,6 +25,8 @@ You can install bytelook using this command, how does it work? The first step is
 sudo curl -Os https://raw.githubusercontent.com/Panonim/bytelook/main/downloads/install.sh && sudo chmod +x install.sh && sudo sh install.sh
 ```
 After the sucessful installation you will get message: "ByteLook has been installed successfully! You can now use the 'bytelook' command."
+### This method does not work for you?
+Please reffer to our [how to compile from source](https://github.com/Panonim/bytelook/blob/main/info/howtocompile.md) tutorial. 
 
 ## Preview
 
