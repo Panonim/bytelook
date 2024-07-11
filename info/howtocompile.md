@@ -9,7 +9,7 @@
   ```
 3. Move compiled file to the /usr/local/bin.
   ```
-  sudo mv ./bytelook /usr/local/bin
+  mv ./bytelook /usr/local/bin
   ```
 And from now on you are ready to use bytelook!
 If you want you can remove the bytelook.c file - not the one inside /usr/local/bin - because bytelook have built-in update command.
