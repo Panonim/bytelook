@@ -18,7 +18,7 @@ if ! command_exists curl; then
 fi
 
 # Download the C source code file
-curl -o -s bytelook.c https://raw.githubusercontent.com/Panonim/bytelook/main/bytelook.c
+curl -os bytelook.c https://raw.githubusercontent.com/Panonim/bytelook/main/bytelook.c
 
 # Check if the download was successful
 if [ $? -ne 0 ]; then
